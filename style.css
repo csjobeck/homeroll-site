@@ -1,0 +1,69 @@
+/* Homeroll site: the app's green. Light and dark follow the visitor's system. */
+:root {
+  --bg: #f3f6f4;
+  --card: #ffffff;
+  --fg: #121614;
+  --muted: #47524d;
+  --line: #dde5e1;
+  --accent: #087857;      /* deep green: passes text contrast on light */
+  --brand: linear-gradient(135deg, #21bd8c, #087857);  /* shared with the app icon */
+  --late: #c92a2a;
+  --display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --body: "IBM Plex Sans", -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0a0f0d;
+    --card: #141b18;
+    --fg: #eef4f1;
+    --muted: #a7b5ae;
+    --line: #24302b;
+    --accent: #3dd39e;
+    --late: #ff6b6b;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 400 1.0625rem/1.65 var(--body);
+  padding-inline: 16px;
+}
+main, header, footer { max-width: 44rem; margin: 0 auto; }
+header { padding-block: 28px 8px; display: flex; align-items: center; gap: 12px; }
+header a { color: inherit; text-decoration: none; display: flex; align-items: center; gap: 12px; }
+header img { width: 40px; height: 40px; border-radius: 9px; box-shadow: 0 4px 14px rgba(8, 120, 87, 0.35); }
+header span { font: 700 1.2rem/1 var(--display); }
+main { padding-block: 24px 48px; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.15; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 6vw, 3rem); margin: 0 0 12px; }
+h2 { font-size: 1.35rem; margin: 2.2em 0 0.5em; }
+h3 { font-size: 1.05rem; margin: 1.6em 0 0.3em; }
+p, li { max-width: 65ch; }
+a { color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+.lede { color: var(--muted); font-size: 1.15rem; }
+.updated { color: var(--muted); font-size: 0.9rem; }
+
+/* A small bill list like the app's, with a brand bar on top. */
+.bills { position: relative; overflow: hidden; background: var(--card); border: 1px solid var(--line);
+         border-radius: 18px; padding: 22px 20px 10px; margin: 28px 0; }
+.bills::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 6px; background: var(--brand); }
+.bill { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); }
+.bill:first-of-type { border-top: 0; }
+.bill .tick { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--accent); flex: none; }
+.bill.paid .tick { background: var(--accent); }
+.bill .name { font-weight: 600; flex: 1; min-width: 0; }
+.bill .when { display: block; font-weight: 400; font-size: 0.9rem; color: var(--muted); }
+.bill.late .when { color: var(--late); }
+.bill.paid .name { text-decoration: line-through; color: var(--muted); }
+.bill .amount { font-variant-numeric: tabular-nums; }
+.month { font: 700 1.6rem/1.2 var(--display); }
+.month small { display: block; font: 400 0.95rem/1.4 var(--body); color: var(--muted); }
+
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; margin: 16px 0; }
+.links { display: flex; flex-wrap: wrap; gap: 10px 24px; }
+footer { border-top: 1px solid var(--line); padding-block: 20px 36px; color: var(--muted); font-size: 0.9rem; }
